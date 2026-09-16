@@ -1,0 +1,82 @@
+table 'social_media df_audience'
+	lineageTag: a4aed2d9-7576-4075-8787-66d3b3e42cea
+
+	column Post_ID
+		dataType: string
+		lineageTag: 1cbf6239-65a5-41f3-b6e5-1d4479a47552
+		summarizeBy: none
+		sourceColumn: Post_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 01273d7b-4483-46b2-bd37-54f56eb81d28
+		summarizeBy: none
+		sourceColumn: Location_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Audience_Age
+		dataType: int64
+		formatString: 0
+		lineageTag: be782215-55e3-4e56-8f3f-da7234e0711a
+		summarizeBy: sum
+		sourceColumn: Audience_Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Group
+		dataType: string
+		lineageTag: d0b7215f-b212-49dd-ae27-cf5893fb03dc
+		summarizeBy: none
+		sourceColumn: Age_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Audience_Gender
+		dataType: string
+		lineageTag: 52888909-f029-4a90-9dfc-23338f525a27
+		summarizeBy: none
+		sourceColumn: Audience_Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Audience_Location
+		dataType: string
+		lineageTag: 47e53c54-582b-4c5f-a335-84108c198f77
+		summarizeBy: none
+		sourceColumn: Audience_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Audience_Continent
+		dataType: string
+		lineageTag: 75d58782-275c-4681-86fc-cdda415bf856
+		summarizeBy: none
+		sourceColumn: Audience_Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Audience_Interests
+		dataType: string
+		lineageTag: d017872e-cf78-4553-9b32-c8d574927220
+		summarizeBy: none
+		sourceColumn: Audience_Interests
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'social_media df_audience' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "social_media", [ReturnSingleDatabase=true]),
+				    social_media_df_audience = Source{[Schema="social_media",Item="df_audience"]}[Data]
+				in
+				    social_media_df_audience
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

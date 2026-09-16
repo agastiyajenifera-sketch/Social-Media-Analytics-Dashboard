@@ -1,0 +1,38 @@
+relationship d5baa567-b3c7-4fa1-8506-e26265df0aca
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'social_media df_posts'.Post_Timestamp
+	toColumn: LocalDateTable_a50a24cc-8fe2-456f-b9c7-f2a6ccaa728d.Date
+
+relationship 8dacfd7a-6348-4ed0-b10c-15813637f84e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'social_media df_posts'.Date
+	toColumn: LocalDateTable_182c883c-ec5f-407a-a132-8902e37e1ce4.Date
+
+relationship AutoDetected_fbd22bca-a9a5-4715-be83-0b701a741488
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'social_media df_engagement'.Post_ID
+	toColumn: 'social_media df_posts'.Post_ID
+
+relationship AutoDetected_91a31f62-fde4-424a-a8c6-ef5a0763ed15
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'social_media df_audience'.Post_ID
+	toColumn: 'social_media df_posts'.Post_ID
+
+relationship AutoDetected_988a4de5-559c-4d46-af58-0753e872533c
+	fromColumn: 'social_media df_posts'.Platform_ID
+	toColumn: 'social_media df_platforms'.Platform_ID
+
+relationship AutoDetected_d69da945-813a-4223-b328-d58d0d141730
+	fromColumn: 'social_media df_audience'.Location_ID
+	toColumn: 'social_media df_locations'.Location_ID
+
+relationship 37418b6e-5abf-802d-1bb4-937359e000f3
+	fromColumn: 'social_media df_posts'.Campaign_Key
+	toColumn: 'social_media df_campaigns'.Campaign_Key
+
+relationship ac607dc0-8da2-7867-da58-d27e78c15324
+	fromColumn: 'social_media df_posts'.Influencer_Key
+	toColumn: 'social_media df_influencers'.Influencer_Key
+

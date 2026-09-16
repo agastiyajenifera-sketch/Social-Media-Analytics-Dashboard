@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 194.48797431896742,
+        "y": 204.35330634963967
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 484.83339805407888,
+            "y": 660.46330271303009
+          },
+          "nodeIndex": "social_media df_audience",
+          "nodeLineageTag": "a4aed2d9-7576-4075-8787-66d3b3e42cea",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 837.31290495927942,
+            "y": 528.3308877490515
+          },
+          "nodeIndex": "social_media df_campaigns",
+          "nodeLineageTag": "9f353e53-89cd-4498-9b0b-378ee9d748a0",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 520.15578818530184,
+            "y": -50
+          },
+          "nodeIndex": "social_media df_engagement",
+          "nodeLineageTag": "f0d3e784-ed02-4f72-9ffb-70e8917c35a5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1121.3129049592794,
+            "y": 528.3308877490515
+          },
+          "nodeIndex": "social_media df_influencers",
+          "nodeLineageTag": "aeaeb010-b9af-43f7-9b76-3880e409b828",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 603.31290495927942,
+            "y": 982.661775498103
+          },
+          "nodeIndex": "social_media df_locations",
+          "nodeLineageTag": "e494c331-ba40-4e09-8cfd-d7dbdb6c6406",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 611.37330529456517
+          },
+          "nodeIndex": "social_media df_platforms",
+          "nodeLineageTag": "b52179c4-da40-4936-9ae0-ca3555ce1a2d",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 337.96641740244445,
+            "y": 303.46845968956563
+          },
+          "nodeIndex": "social_media df_posts",
+          "nodeLineageTag": "8c29da28-2f3e-4c43-b584-5f70a244f935",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70.955543900968877,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

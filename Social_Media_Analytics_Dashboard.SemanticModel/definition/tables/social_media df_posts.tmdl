@@ -1,0 +1,157 @@
+table 'social_media df_posts'
+	lineageTag: 8c29da28-2f3e-4c43-b584-5f70a244f935
+
+	column Post_ID
+		dataType: string
+		lineageTag: d97f4e84-bbf4-4141-89fc-4b8c2bb56728
+		summarizeBy: none
+		sourceColumn: Post_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Platform_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ffff7925-cdc1-4266-89b4-39c408ab4ea1
+		summarizeBy: none
+		sourceColumn: Platform_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Platform
+		dataType: string
+		lineageTag: 2ecd8e7b-ee12-4091-a25a-7b717744037b
+		summarizeBy: none
+		sourceColumn: Platform
+
+		annotation SummarizationSetBy = Automatic
+
+	column Post_Type
+		dataType: string
+		lineageTag: d36895ec-0dc7-42ad-a7a6-2e22a4f07374
+		summarizeBy: none
+		sourceColumn: Post_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Post_Content
+		dataType: string
+		lineageTag: 60b55cda-45bd-48f6-a817-59f0f2380569
+		summarizeBy: none
+		sourceColumn: Post_Content
+
+		annotation SummarizationSetBy = Automatic
+
+	column Post_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2fb0f09a-46da-467a-b14e-0220c7e7aa86
+		summarizeBy: none
+		sourceColumn: Post_Timestamp
+
+		variation Variation
+			isDefault
+			relationship: d5baa567-b3c7-4fa1-8506-e26265df0aca
+			defaultHierarchy: LocalDateTable_a50a24cc-8fe2-456f-b9c7-f2a6ccaa728d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e77fac52-80f4-4cda-895a-3a3a23b0f5a2
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 8dacfd7a-6348-4ed0-b10c-15813637f84e
+			defaultHierarchy: LocalDateTable_182c883c-ec5f-407a-a132-8902e37e1ce4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Weekday_Type
+		dataType: string
+		lineageTag: adc97a68-0778-46ea-aae4-2f63be4d79a7
+		summarizeBy: none
+		sourceColumn: Weekday_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: e3737cf5-4204-4a0d-8651-cff16246b4f8
+		summarizeBy: none
+		sourceColumn: Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Time_Period
+		dataType: string
+		lineageTag: 22f41dce-e6cb-4c56-8433-4aa2243325ca
+		summarizeBy: none
+		sourceColumn: Time_Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sentiment
+		dataType: string
+		lineageTag: 19503057-33c4-4d05-a49f-c4f33847df2a
+		summarizeBy: none
+		sourceColumn: Sentiment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campaign_ID
+		dataType: string
+		lineageTag: 574ecf91-6faa-4d88-9a37-e44ea460ba5c
+		summarizeBy: none
+		sourceColumn: Campaign_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campaign_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 951c4cc2-53c3-412b-b941-158a8d595e99
+		summarizeBy: none
+		sourceColumn: Campaign_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Influencer_ID
+		dataType: string
+		lineageTag: 528fba04-f8eb-4b5e-8fee-89f993035ac4
+		summarizeBy: none
+		sourceColumn: Influencer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Influencer_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bea144f-0f86-4d8e-9810-5151459036a9
+		summarizeBy: none
+		sourceColumn: Influencer_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'social_media df_posts' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "social_media", [ReturnSingleDatabase=true]),
+				    social_media_df_posts = Source{[Schema="social_media",Item="df_posts"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(social_media_df_posts,{{"Post_Timestamp", type datetime}, {"Date", type date}, {"Time", type time}, {"Influencer_Key", Int64.Type}, {"Campaign_Key", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

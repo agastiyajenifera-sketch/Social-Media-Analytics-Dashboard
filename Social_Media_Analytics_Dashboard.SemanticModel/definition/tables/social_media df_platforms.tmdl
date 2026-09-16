@@ -1,0 +1,33 @@
+table 'social_media df_platforms'
+	lineageTag: b52179c4-da40-4936-9ae0-ca3555ce1a2d
+
+	column Platform_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f7a9c97c-1f99-4c8c-9cf8-8470f01ef5b2
+		summarizeBy: none
+		sourceColumn: Platform_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Platform
+		dataType: string
+		lineageTag: 71dc1ca7-95b9-4741-91b8-e26d0e69f746
+		summarizeBy: none
+		sourceColumn: Platform
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'social_media df_platforms' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "social_media", [ReturnSingleDatabase=true]),
+				    social_media_df_platforms = Source{[Schema="social_media",Item="df_platforms"]}[Data]
+				in
+				    social_media_df_platforms
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

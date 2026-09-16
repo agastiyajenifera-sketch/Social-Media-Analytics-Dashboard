@@ -1,0 +1,33 @@
+table 'social_media df_influencers'
+	lineageTag: aeaeb010-b9af-43f7-9b76-3880e409b828
+
+	column Influencer_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: f966c916-7f79-477d-9c94-65f2a5b64a05
+		summarizeBy: none
+		sourceColumn: Influencer_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Influencer_ID
+		dataType: string
+		lineageTag: 21e8abcd-4a43-4755-bfa5-c8fac6e3a15e
+		summarizeBy: none
+		sourceColumn: Influencer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'social_media df_influencers' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "social_media", [ReturnSingleDatabase=true]),
+				    social_media_df_influencers = Source{[Schema="social_media",Item="df_influencers"]}[Data]
+				in
+				    social_media_df_influencers
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

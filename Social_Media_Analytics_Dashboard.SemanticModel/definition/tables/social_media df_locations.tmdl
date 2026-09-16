@@ -1,0 +1,41 @@
+table 'social_media df_locations'
+	lineageTag: e494c331-ba40-4e09-8cfd-d7dbdb6c6406
+
+	column Location_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: fde5da75-1c1c-4f12-b6f8-80c86880570e
+		summarizeBy: none
+		sourceColumn: Location_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Audience_Location
+		dataType: string
+		lineageTag: 2dff4d6f-faae-473e-9845-7b52d16e6212
+		summarizeBy: none
+		sourceColumn: Audience_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Audience_Continent
+		dataType: string
+		lineageTag: ac0b9914-1c77-477f-83d4-c7ce11de798b
+		summarizeBy: none
+		sourceColumn: Audience_Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'social_media df_locations' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "social_media", [ReturnSingleDatabase=true]),
+				    social_media_df_locations = Source{[Schema="social_media",Item="df_locations"]}[Data]
+				in
+				    social_media_df_locations
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

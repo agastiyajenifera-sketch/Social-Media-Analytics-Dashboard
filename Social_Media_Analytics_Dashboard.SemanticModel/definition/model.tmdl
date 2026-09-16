@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["social_media df_posts","social_media df_engagement","social_media df_audience","social_media df_locations","social_media df_platforms","social_media df_campaigns","social_media df_influencers"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'social_media df_posts'
+ref table DateTableTemplate_3e0c2a4b-9444-47b2-8e75-8c6e3f7d18ec
+ref table LocalDateTable_a50a24cc-8fe2-456f-b9c7-f2a6ccaa728d
+ref table LocalDateTable_182c883c-ec5f-407a-a132-8902e37e1ce4
+ref table 'social_media df_engagement'
+ref table 'social_media df_audience'
+ref table 'social_media df_locations'
+ref table 'social_media df_platforms'
+ref table 'social_media df_campaigns'
+ref table 'social_media df_influencers'
+
+ref cultureInfo en-US
+

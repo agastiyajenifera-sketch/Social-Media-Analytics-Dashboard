@@ -1,0 +1,126 @@
+table 'social_media df_engagement'
+	lineageTag: f0d3e784-ed02-4f72-9ffb-70e8917c35a5
+
+	column Post_ID
+		dataType: string
+		lineageTag: 26b4b12e-7a34-4f00-b281-6e9c24adfc4a
+		summarizeBy: none
+		sourceColumn: Post_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Likes
+		dataType: int64
+		formatString: 0
+		lineageTag: d9ca1d5f-10c0-41fe-84c0-62a83af8617c
+		summarizeBy: sum
+		sourceColumn: Likes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comments
+		dataType: int64
+		formatString: 0
+		lineageTag: 6754d945-fc2d-4c2c-bdbf-76a4b2460549
+		summarizeBy: sum
+		sourceColumn: Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shares
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c193b4d-726b-4d33-93aa-c2513ba5e402
+		summarizeBy: sum
+		sourceColumn: Shares
+
+		annotation SummarizationSetBy = Automatic
+
+	column Impressions
+		dataType: int64
+		formatString: 0
+		lineageTag: eb6d1e41-728d-4881-a7f1-7361d6fc6f3e
+		summarizeBy: sum
+		sourceColumn: Impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reach
+		dataType: int64
+		formatString: 0
+		lineageTag: d8bf9e62-82f0-4a1e-9628-74eee8dd53e5
+		summarizeBy: sum
+		sourceColumn: Reach
+
+		annotation SummarizationSetBy = Automatic
+
+	column Engagement_Rate
+		dataType: double
+		lineageTag: 940b850e-1d5b-4920-ad53-f2f629273b9d
+		summarizeBy: sum
+		sourceColumn: Engagement_Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_Engagement
+		dataType: int64
+		formatString: 0
+		lineageTag: 5be39f0d-1829-419e-ba77-daf894d3c53f
+		summarizeBy: sum
+		sourceColumn: Total_Engagement
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calculated_Engagement_Rate
+		dataType: double
+		lineageTag: 498abcb9-0f7c-4349-8118-9ca59f6951e5
+		summarizeBy: sum
+		sourceColumn: Calculated_Engagement_Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Engagement_per_Impression
+		dataType: double
+		lineageTag: 075176b9-d58f-48e3-8623-b30c34374f20
+		summarizeBy: sum
+		sourceColumn: Engagement_per_Impression
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Reach_Efficiency
+		dataType: double
+		lineageTag: 3c63cf3d-f505-4b2b-872d-dfed4582f864
+		summarizeBy: sum
+		sourceColumn: Reach_Efficiency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Performance_Level
+		dataType: string
+		lineageTag: 74e33ae3-8071-486c-aa45-f1bc7844083d
+		summarizeBy: none
+		sourceColumn: Performance_Level
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'social_media df_engagement' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "social_media", [ReturnSingleDatabase=true]),
+				    social_media_df_engagement = Source{[Schema="social_media",Item="df_engagement"]}[Data]
+				in
+				    social_media_df_engagement
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

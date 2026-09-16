@@ -1,0 +1,33 @@
+table 'social_media df_campaigns'
+	lineageTag: 9f353e53-89cd-4498-9b0b-378ee9d748a0
+
+	column Campaign_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c323e67-223c-48a8-819e-38745270382f
+		summarizeBy: none
+		sourceColumn: Campaign_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campaign_ID
+		dataType: string
+		lineageTag: b5800ea3-ae4b-411c-8e3b-f1d8e7daf49e
+		summarizeBy: none
+		sourceColumn: Campaign_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'social_media df_campaigns' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "social_media", [ReturnSingleDatabase=true]),
+				    social_media_df_campaigns = Source{[Schema="social_media",Item="df_campaigns"]}[Data]
+				in
+				    social_media_df_campaigns
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
